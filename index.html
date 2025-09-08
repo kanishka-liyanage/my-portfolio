@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Dark/Light Mode */
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #c9d1d9;
+            --text-secondary: #99a2ad;
+            --accent-color: #58a6ff;
+            --accent-hover: #1a6dff;
+            --card-bg: #1f2937;
+            --card-hover-bg: #30363d;
+            --border-color: #30363d;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(13, 17, 23, 0.7);
+        }
+
+        .light-mode {
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --accent-color: #3498db;
+            --accent-hover: #2980b9;
+            --card-bg: #ffffff;
+            --card-hover-bg: #ecf0f1;
+            --border-color: #dcdde1;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --header-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .section {
+                padding: 0;
+                text-align: left;
+            }
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: var(--header-bg);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 1rem; /* Add a small gap between items */
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color 0.3s;
+            text-decoration: none;
+
+        }
+
+        .nav-logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            transition: color 0.3s;
+            font-weight: 500;
+            text-decoration: none;  
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                font-size: 0.875rem;
+            }
+        }
+        
+        @media (min-width: 640px) {
+            .nav-links {
+                font-size: 1rem;
+            }
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 9999px;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--card-hover-bg);
+        }
+        
+        .theme-toggle svg {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .theme-toggle.spin svg {
+            transform: rotate(360deg);
+        }
+        
+        /* New: Hide the button on smaller screens to prevent overlap */
+        @media (max-width: 480px) {
+            .theme-toggle {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            margin-top: 2rem;
+            animation: fadeInFromLeft 1s ease-out;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-right: 2.5rem;
+                margin-top: 0;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+        }
+
+        .hero-title-highlight {
+            color: var(--accent-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInFromLeft 1s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            animation: fadeInFromLeft 1s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        .hero-actions a, .form-button {
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-hover);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056e6;
+        }
+
+        .btn-secondary {
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            animation: fadeInFromRight 1s ease-out;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-image-container {
+                margin-bottom: 0;
+            }
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%; /* Changed to a circle */
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+            /* New: Apply floating animation */
+            animation: float 4s ease-in-out infinite, fadeInFromRight 1s ease-out;
+        }
+        
+        /* NEW: Adjusted the specific image dimensions to make it a suitable circle */
+        @media (min-width: 640px) {
+            .hero-image {
+                width: 500px; /* Fixed width for the circle, now bigger */
+                height: 500px; /* Fixed height for the circle, now bigger */
+                object-fit: cover; /* Changed to cover to fill the circle and avoid letterboxing */
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            flex-direction: column-reverse;
+        }
+        
+        @media (min-width: 768px) {
+            .about-section {
+                flex-direction: row;
+            }
+        }
+
+        .about-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .about-image-container {
+                margin-bottom: 0;
+            }
+        }
+
+        .about-image {
+       width: 100%;
+       max-width: 384px;   /* 24rem ≈ 384px */
+       height: auto;       /* maintain aspect ratio */
+       border-radius: 0.5rem;
+       box-shadow: 0 10px 15px -3px var(--shadow-color);
+       display: block;     /* removes extra space below image */
+       }
+
+
+        .about-content {
+            flex: 1;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                padding-left: 2.5rem;
+            }
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.625;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .about-text {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            padding: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            background-color: var(--card-hover-bg);
+        }
+        
+        /* New: Animation class for project/skill cards */
+        .animate-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: var(--animation-delay, 0s);
+        }
+
+        /* New: Staggered animation delays for project cards */
+        .projects-grid .animate-card:nth-child(1) { --animation-delay: 0s; }
+        .projects-grid .animate-card:nth-child(2) { --animation-delay: 0.2s; }
+        .projects-grid .animate-card:nth-child(3) { --animation-delay: 0.4s; }
+
+        .project-image {
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-actions a {
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .project-actions a:first-child {
+            background-color: var(--accent-hover);
+            color: white;
+        }
+        
+        .project-actions a:first-child:hover {
+            background-color: #0056e6;
+        }
+        
+        .project-actions a:last-child {
+            background-color: var(--card-hover-bg);
+            color: var(--text-secondary);
+        }
+        
+        .project-actions a:last-child:hover {
+            background-color: #444c56;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* New Skill Card Styles */
+        .skill-card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+        }
+        
+        /* New: Staggered animation delays for skill cards */
+        .skills-grid .animate-card:nth-child(1) { --animation-delay: 0s; }
+        .skills-grid .animate-card:nth-child(2) { --animation-delay: 0.1s; }
+        .skills-grid .animate-card:nth-child(3) { --animation-delay: 0.2s; }
+        .skills-grid .animate-card:nth-child(4) { --animation-delay: 0.3s; }
+        .skills-grid .animate-card:nth-child(5) { --animation-delay: 0.4s; }
+        .skills-grid .animate-card:nth-child(6) { --animation-delay: 0.5s; }
+        .skills-grid .animate-card:nth-child(7) { --animation-delay: 0.6s; }
+
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--card-hover-bg);
+        }
+
+        .skill-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .skill-content {
+            flex-grow: 1;
+        }
+        
+        .skill-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .skill-bar {
+            background-color: var(--border-color);
+            height: 12px;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background-color: var(--accent-color);
+            height: 100%;
+            transition: width 0.8s ease-in-out;
+            border-radius: 9999px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .contact-links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+
+        /* Updated: Reduced size for the contact cards */
+        .contact-card {
+            background-color: var(--card-bg);
+            border: 2px solid transparent;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 1rem; /* Reduced padding */
+            flex: 1 1 200px; /* Adjusted flex-basis to be smaller */
+            max-width: 250px; /* Reduced max-width */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent-color);
+            background-color: var(--card-hover-bg);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+        
+        /* Updated: Reduced SVG icon size */
+        .contact-card svg {
+            width: 3rem;
+            height: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Updated: Reduced heading font size */
+        .contact-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        /* New: Hide the heading and just show the icons */
+        .contact-card h3 {
+            display: none;
+        }
+        /* New: Increase the size of the icons and make them a single row*/
+        .contact-links-grid {
+            gap: 2rem;
+            flex-basis: auto;
+            flex-direction: row;
+        }
+
+        .contact-card {
+            padding: 0.75rem;
+            max-width: none;
+        }
+        
+        .contact-card svg {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-bottom: 0;
+        }
+        
+
+        .contact-form {
+            width: 100%;
+            max-width: 32rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .form-input {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25);
+        }
+
+        .form-button {
+            width: 100%;
+            background-color: var(--accent-hover);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .form-button:hover {
+            background-color: #0056e6;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            text-align: center;
+            color: #38a169;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* New: Floating animation for the hero image */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444c56;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <nav class="container nav">
+            <a href="#hero" class="nav-logo">My Portfolio</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <!-- Dark/Light Mode Toggle Button moved inside the nav -->
+            <button class="theme-toggle" aria-label="Toggle dark and light mode">
+                <!-- Sun SVG Icon -->
+                <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Moon SVG Icon -->
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Hello, I'm <br>
+                    <span class="hero-title-highlight">Kanishka</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A Passionate Full Stack Developer.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">
+                        Get In Touch
+                    </a>
+                    
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="kaniya.jpg" alt="Profile Picture" class="hero-image" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/a0aec0?text=Profile+Picture';">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="about-image-container">
+                <img src="ab.png" alt="About Me Image" class="about-image">
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-text">
+                 I’m a passionate software engineering undergraduate with a strong interest in building modern, user-friendly, and impactful digital solutions. My journey in technology has been driven by curiosity and a desire to solve real-world problems through coding, automation, and innovative ideas                </p>
+                <p class="about-text">
+                    My goal is to grow as a versatile engineer who contributes to meaningful projects that make a difference                </p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section flex-col">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card animate-card">
+                    <img src="project1.jpg" alt="Project 1" class="project-image">
+                    <h3 class="project-title">STAR</h3>
+                    <p class="project-description">A project for the Star 2024 competition, developed with an ESP32 microcontroller. The project is an upcoming activity, with details yet to be announced.</p>
+                    <div class="project-actions">
+                        <a href="https://www.linkedin.com/posts/kanishka-liyanage-099559332_star-2024-using-esp-32-yet-to-come-upcoming-activity-7265586399087591424-agjl?utm_source=share&utm_medium=member_ios&rcm=ACoAAFO7LjUBFVLqxQjD8CdK2VqTTBsvMDNHRUo" target="_blank" rel="noopener noreferrer">View Project</a>
+                        <a href="#">View Code</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="project-card animate-card">
+                    <img src="project2.png" alt="Project 2" class="project-image">
+                    <h3 class="project-title">AI Project with OpenCV</h3>
+                    <p class="project-description">
+                        An AI project developed using Python and OpenCV. This project showcases the use of computer vision for various applications. It highlights skills in machine learning and image processing.
+                    </p>
+                    <div class="project-actions">
+                        <a href="https://www.linkedin.com/posts/kanishka-liyanage-099559332_just-created-my-ai-project-with-opencv-activity-7364633426823426048-qFEd?utm_source=share&utm_medium=member_ios&rcm=ACoAAFO7LjUBFVLqxQjD8CdK2VqTTBsvMDNHRUo" target="_blank" rel="noopener noreferrer">View Project</a>
+                        <a href="#">View Code</a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="project-card animate-card">
+                    <img src="project3.jpg" alt="Project 3" class="project-image"/>
+                    <h3 class="project-title">Virtual vs Real</h3>
+                    <p class="project-description">Experience the perfect combination of controlling both virtual and real environments</p>
+                    <div class="project-actions">
+                        <a href="https://www.linkedin.com/posts/kanishka-liyanage-099559332_experience-the-perfect-combination-of-controlling-activity-7290287854121893888-0Qur?utm_source=share&utm_medium=member_ios&rcm=ACoAAFO7LjUBFVLqxQjD8CdK2VqTTBsvMDNHRUo">View Project</a>
+                        <a href="#">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section flex-col">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <!-- Skill Card: JavaScript -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-2"><path d="M5 12l6-6 6 6m-6 6l-6-6-6-6"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">JavaScript</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: React -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-atom"><circle cx="12" cy="12" r="3"/><path d="M12 2A10 10 0 0 0 6 18.5a10 10 0 0 0 12 0A10 10 0 0 0 12 2Z"/><path d="M21.5 9c-.1-1.3-.5-2.6-1.1-3.8M2.5 9c.1-1.3.5-2.6 1.1-3.8M21.5 15c-.1 1.3-.5 2.6-1.1 3.8M2.5 15c.1 1.3.5 2.6 1.1 3.8"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">React</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: Node.js -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-rain"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.28"/><path d="M16 14v6"/><path d="M8 12v6"/><path d="M12 16v6"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">Node.js</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: HTML & CSS -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-code"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.4L15 2z"/><path d="M10 14h1.5l-1.5 4.5v-2.5h2.5"/><path d="M14 10h1.5l-1.5 4.5v-2.5h2.5"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">HTML & CSS</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: UI/UX Design -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13.5L12 19"/><path d="m2 22 7-7"/><path d="M15 8l-8.5 8.5"/><path d="m20 13-1.5-1.5"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">UI/UX Design</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: MongoDB -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.4 19 2c1 2 2 4.1 2 5.6a7 7 0 0 1-9 12.5"/><path d="M11 15a4 4 0 0 1-4.5-4.5"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">MongoDB</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skill Card: Python -->
+                <div class="skill-card animate-card">
+                    <svg class="skill-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    <div class="skill-content">
+                        <h4 class="skill-title">Python</h4>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-links-grid">
+                <!-- Email Card -->
+                <a href="binarakanishka54@gmail.com" class="contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <h3>Email Me</h3>
+                </a>
+                <!-- LinkedIn Card -->
+                <a href="http://www.linkedin.com/in/kanishka-liyanage-099559332" class="contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 20h4V8H2v12z"/><path d="M4 6a2 2 0 1 0 0-4a2 2 0 0 0 0 4z"/></svg>
+                    <h3>LinkedIn</h3>
+                </a>
+                <!-- GitHub Card -->
+                <a href="https://github.com/kanishka-liyanage" class="contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <h3>GitHub</h3>
+                </a>
+              
+            </div>
+            
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Or send me a message directly!</p>
+
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="form-button">Send Message</button>
+                <div id="form-message" class="form-message">Message sent successfully!</div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple form submission handler
+        function sendMessage() {
+            const formMessage = document.getElementById('form-message');
+            formMessage.style.display = 'block';
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Dark/Light mode toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            
+            // Toggle icons based on mode
+            if (isLightMode) {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        });
+
+        // Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Fix for unhandled rejection error
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    sendMessage();
+                });
+            }
+        });
+
+    </script>
+</body>
+</html>
